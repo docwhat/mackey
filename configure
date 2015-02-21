@@ -2,11 +2,13 @@
 
 set -eu
 
-export GEM_HOME="$(dirname "$0")/build-deps"
+cd "$(dirname "$0")"
+
+export GEM_HOME="${PWD}/build-deps"
 unset GEM_PATH
 
 /usr/bin/gem install --conservative --no-document bundler
 
-"$GEM_HOME/bin/bundle" install --standalone
+"${GEM_HOME}/bin/bundle" install --standalone --clean --binstubs=bin
 
 # EOF

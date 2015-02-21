@@ -3,3 +3,5 @@
 /gems/
 /build-deps/
 /bundle/
+/bin/*
+!/bin/mackey

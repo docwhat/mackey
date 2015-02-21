@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+# encoding: utf-8
 
 BUNDLER_SETUP = File.expand_path('../../bundle/bundler/setup.rb', File.realpath(__FILE__))
 require BUNDLER_SETUP

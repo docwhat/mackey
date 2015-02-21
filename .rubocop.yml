@@ -1,0 +1,12 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'build-deps/**/*'
+    - 'bundle/**/*'
+    - 'bin/rubocop'
+    - 'bin/ruby-parse'
+    - 'bin/ruby-rewrite'
+
+Style/Encoding:
+  Enabled: true
