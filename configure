@@ -2,13 +2,57 @@
 
 set -eu
 
+function show_help
+{
+	cat <<-HELP
+	Usage: $0 [options]
+	
+	Options:
+	-d --development   Install gems needed for development
+	HELP
+}
+
 cd "$(dirname "$0")"
 
 export GEM_HOME="${PWD}/build-deps"
 unset GEM_PATH
 
+development_mode=f
+while [ $# -gt 0 ]; do
+	case "$1" in
+		-h|--h|--help)
+			show_help
+			exit 0
+			;;
+		-d|--d|--development)
+			development_mode=t
+			;;
+		-*)
+			echo "ERROR: Unknown flag $1" 1>&2
+			show_help
+			exit 1
+			;;
+		*)
+			echo "ERROR: Unknown argument $0" 1>&2
+			show_help
+			exit 1
+			;;
+	esac
+	shift
+done
+
 /usr/bin/gem install --conservative --no-document bundler
 
-"${GEM_HOME}/bin/bundle" install --standalone --clean --binstubs=bin
+if [ "$development_mode" = t ]; then
+	bundle_without=""
+else
+	bundle_without="development"
+fi
+
+"${GEM_HOME}/bin/bundle" install \
+	--standalone \
+	--clean \
+	--binstubs=bin \
+	--without="$bundle_without"
 
 # EOF
