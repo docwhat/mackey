@@ -4,9 +4,10 @@ AllCops:
   Exclude:
     - 'build-deps/**/*'
     - 'bundle/**/*'
-    - 'bin/rubocop'
-    - 'bin/ruby-parse'
-    - 'bin/ruby-rewrite'
+    - 'bin/[a-ln-zA-Z]*'
+
+Metrics/LineLength:
+  Max: 120
 
 Style/Encoding:
   Enabled: true
