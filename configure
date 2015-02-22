@@ -42,11 +42,12 @@ cd "$(dirname "$0")"
 export GEM_HOME="${PWD}/build-deps"
 unset GEM_PATH
 
-/usr/bin/gem install \
-  --conservative\
-  --no-document\
-  --bindir "${PWD}/bin" \
-  bundler
+if [ ! -x "${PWD}/bin/bundle" ]; then
+  /usr/bin/gem install \
+    --no-document\
+    --bindir "${PWD}/bin" \
+    bundler
+fi
 
 if [ "$development_mode" = t ]; then
   bundle_without=""
