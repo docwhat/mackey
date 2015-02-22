@@ -4,7 +4,7 @@
 require 'pathname'
 
 # I'm using pathname because realpath doesn't exist in ruby 1.8.7 (OSX 10.8)
-BUNDLER_SETUP = (Pathname.new(__FILE__).dirname.dirname + 'bundle/bundler/setup.rb').realpath
+BUNDLER_SETUP = (Pathname.new(__FILE__).realpath.dirname.dirname + 'bundle/bundler/setup.rb').to_s
 require BUNDLER_SETUP
 require 'optparse'
 require 'sys/uptime'
