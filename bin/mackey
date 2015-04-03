@@ -127,7 +127,12 @@ class Mackey
   end
 
   def uptime_helper
-    Sys::Uptime.dhms.map(&:to_i).zip(%w(day hour minute second)).map { |n, s| "#{n} #{s}#{n > 1 ? 's' : ''}" }.reject { |n, _s| n == 0 }.first
+    Sys::Uptime.dhms
+      .map(&:to_i)
+      .zip(%w(day hour minute second))
+      .reject { |n, _s| n == 0 }
+      .map { |n, s| "#{n} #{s}#{n > 1 ? 's' : ''}" }
+      .first
   end
 
   def disk_helper
