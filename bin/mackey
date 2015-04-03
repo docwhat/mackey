@@ -97,7 +97,7 @@ class Mackey
       make_stat('IP Addr') { Sys::Host.ip_addr.first },
       make_stat('CPU') { `/usr/sbin/sysctl -n machdep.cpu.brand_string`.chomp.gsub(/\([A-Z]{1,2}\)/, '') },
       make_stat('Memory') { "#{`/usr/sbin/sysctl -n hw.memsize`.to_i / (1024**3)} GB" },
-      make_stat('Disk') { uptime_helper }
+      make_stat('Disk') { disk_helper }
     ].freeze
   end
 
