@@ -23,6 +23,14 @@ Example output:
 Installation
 ------------
 
+### Homebrew
+
+```
+$ brew install --HEAD https://raw.githubusercontent.com/docwhat/mackey/master/mackey.rb
+```
+
+### Manually
+
 1.  Clone this repository or download [the latest
     tar.gz](https://github.com/docwhat/mackey/archive/master.tar.gz).
 2.  Run `./configure`
