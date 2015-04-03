@@ -94,7 +94,7 @@ class Mackey
       make_stat('Shell') { ENV['SHELL'] },
       make_stat('Terminal') { ENV['TERM'] },
       make_stat('Packages') { packages_helper },
-      make_stat('IP Addr') { Sys::Host.ip_addr.first },
+      make_stat('IP Addr') { ipaddr_helper },
       make_stat('CPU') { `/usr/sbin/sysctl -n machdep.cpu.brand_string`.chomp.gsub(/\([A-Z]{1,2}\)/, '') },
       make_stat('Memory') { "#{`/usr/sbin/sysctl -n hw.memsize`.to_i / (1024**3)} GB" },
       make_stat('Disk') { disk_helper }
@@ -124,6 +124,12 @@ class Mackey
   def make_stat(name)
     value = yield
     "%{SteelBlue}#{name}:%{reset} #{value}"
+  end
+
+  def ipaddr_helper
+    Sys::Host.ip_addr.first
+  rescue Sys::Host::Error
+    'no network'
   end
 
   def uptime_helper
