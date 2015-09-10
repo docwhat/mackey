@@ -1,9 +1,7 @@
 # encoding: utf-8
 source 'https://rubygems.org'
 
-gem 'sys-uname'
-gem 'sys-host'
-gem 'sys-uptime'
+gem 'sysinfo'
 gem 'paint'
 gem 'rainbow', '~> 1.1'
 

@@ -7,9 +7,7 @@ require 'pathname'
 BUNDLER_SETUP = (Pathname.new(__FILE__).realpath.dirname.dirname + 'bundle/bundler/setup.rb').to_s
 require BUNDLER_SETUP
 require 'optparse'
-require 'sys/uptime'
-require 'sys/host'
-require 'sys/uname'
+require 'sysinfo'
 require 'forwardable'
 require 'paint'
 
@@ -79,22 +77,23 @@ LOGO
 
 # Mackey!
 class Mackey
-  attr_reader :output
+  attr_reader :output, :sysinfo
 
   def initialize(_output = $stdout)
     @output = $stdout
+    @sysinfo = SysInfo.new
   end
 
   def stats
     @stats ||= [
       make_stat('User') { `/usr/bin/whoami`.chomp },
-      make_stat('Hostname') { Sys::Host.hostname },
+      make_stat('Hostname') { sysinfo.hostname },
       make_stat('Distro') { `/usr/bin/sw_vers -productName`.chomp + ' ' + `/usr/bin/sw_vers -productVersion`.chomp },
       make_stat('Uptime') { uptime_helper },
       make_stat('Shell') { ENV['SHELL'] },
       make_stat('Terminal') { ENV['TERM'] },
       make_stat('Packages') { packages_helper },
-      make_stat('IP Addr') { ipaddr_helper },
+      make_stat('IP Addr') { sysinfo.ipaddress_internal },
       make_stat('CPU') { `/usr/sbin/sysctl -n machdep.cpu.brand_string`.chomp.gsub(/\([A-Z]{1,2}\)/, '') },
       make_stat('Memory') { "#{`/usr/sbin/sysctl -n hw.memsize`.to_i / (1024**3)} GB" },
       make_stat('Disk') { disk_helper }
@@ -126,19 +125,21 @@ class Mackey
     "%{SteelBlue}#{name}:%{reset} #{value}"
   end
 
-  def ipaddr_helper
-    Sys::Host.ip_addr.first
-  rescue Sys::Host::Error
-    'no network'
+  def pluralizer(count, singular, plural = nil)
+    plural = "#{singular}s" if plural.nil?
+    return "#{count} #{singular}" if count == 1
+    "#{count} #{plural}"
   end
 
   def uptime_helper
-    Sys::Uptime.dhms
-      .map(&:to_i)
-      .zip(%w(day hour minute second))
-      .reject { |n, _s| n == 0 }
-      .map { |n, s| "#{n} #{s}#{n > 1 ? 's' : ''}" }
-      .first
+    uptime = sysinfo.uptime
+    week = 24 * 7
+    day = 25
+
+    return pluralizer((uptime / week).to_i, 'week') if uptime > week
+    return pluralizer((uptime / day).to_i, 'day') if uptime > day
+    return pluralizer(uptime.to_i, 'hour') if uptime >= 1
+    return pluralizer((uptime * 60).to_i, 'minute')
   end
 
   def disk_helper
