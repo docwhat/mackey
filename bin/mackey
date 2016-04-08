@@ -139,7 +139,7 @@ class Mackey
     return pluralizer((uptime / week).to_i, 'week') if uptime > week
     return pluralizer((uptime / day).to_i, 'day') if uptime > day
     return pluralizer(uptime.to_i, 'hour') if uptime >= 1
-    return pluralizer((uptime * 60).to_i, 'minute')
+    pluralizer((uptime * 60).to_i, 'minute')
   end
 
   def disk_helper
@@ -191,7 +191,7 @@ class App
 
   def options
     @options ||= {
-      :color => $stdout.isatty
+      color: $stdout.isatty
     }
   end
 
