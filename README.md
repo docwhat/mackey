@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/74e2b43de9d04dde8cc0fb486267ba2c)](https://www.codacy.com/app/docwhat/mackey?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=docwhat/mackey&amp;utm_campaign=Badge_Grade)
+
 Mackey (Archey alike for OS X)
 ==============================
 
