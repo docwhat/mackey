@@ -1,6 +1,4 @@
 #!/usr/bin/ruby
-# encoding: utf-8
-
 require 'pathname'
 
 # I'm using pathname because realpath doesn't exist in ruby 1.8.7 (OSX 10.8)
@@ -47,7 +45,7 @@ class Logo
   end
 
   def max_width
-    @max_width ||= plain.reduce(0) { |a, e| e.length > a ? e.length : a }
+    @max_width ||= plain.reduce(0) { |acc, elem| elem.length > acc ? elem.length : acc }
   end
 
   def plain
@@ -107,7 +105,7 @@ class Mackey
     padded_stats = ([''] * top_padding) + stats
     logo.zip(padded_stats).each do |logo_line, stat_line|
       puts(
-        "   #{logo_line}         #{stat_line}".send(Paint.mode == 0 ? :remove_color : :add_color)
+        "   #{logo_line}         #{stat_line}".send(Paint.mode.zero? ? :remove_color : :add_color)
       )
     end
 

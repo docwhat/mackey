@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 # Formula for Mackey
 class Mackey < Formula
   desc 'Shows info about your mac and a pretty logo'

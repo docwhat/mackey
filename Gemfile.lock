@@ -28,7 +28,7 @@ DEPENDENCIES
   paint (~> 1.0)
   rainbow (~> 1.1)
   rubocop
-  sysinfo
+  sysinfo (~> 0.8.1)
 
 BUNDLED WITH
-   1.11.2
+   1.14.4
