@@ -1,25 +1,27 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    ast (2.2.0)
+    ast (2.4.0)
     drydock (0.6.9)
     paint (1.0.1)
-    parser (2.3.0.7)
-      ast (~> 2.2)
-    powerpack (0.1.1)
+    parallel (1.17.0)
+    parser (2.6.2.1)
+      ast (~> 2.4.0)
+    powerpack (0.1.2)
     rainbow (1.99.2)
-    rubocop (0.39.0)
-      parser (>= 2.3.0.7, < 3.0)
+    rubocop (0.49.1)
+      parallel (~> 1.10)
+      parser (>= 2.3.3.1, < 3.0)
       powerpack (~> 0.1)
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
-    ruby-progressbar (1.7.5)
+    ruby-progressbar (1.10.0)
     storable (0.8.9)
     sysinfo (0.8.1)
       drydock
       storable
-    unicode-display_width (1.0.3)
+    unicode-display_width (1.5.0)
 
 PLATFORMS
   ruby
@@ -27,8 +29,8 @@ PLATFORMS
 DEPENDENCIES
   paint (~> 1.0)
   rainbow (~> 1.1)
-  rubocop
+  rubocop (>= 0.49.0)
   sysinfo (~> 0.8.1)
 
 BUNDLED WITH
-   1.14.4
+   1.17.3
