@@ -5,5 +5,5 @@ gem 'rainbow', '~> 1.1'
 gem 'sysinfo', '~> 0.8.1'
 
 group :development do
-  gem 'rubocop'
+  gem 'rubocop', '>= 0.49.0'
 end
