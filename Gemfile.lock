@@ -3,7 +3,7 @@ GEM
   specs:
     ast (2.4.0)
     drydock (0.6.9)
-    paint (1.0.1)
+    paint (2.1.1)
     parallel (1.17.0)
     parser (2.6.2.1)
       ast (~> 2.4.0)
@@ -27,10 +27,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  paint (~> 1.0)
+  paint (~> 2.1.0)
   rainbow (~> 1.1)
   rubocop (>= 0.49.0)
   sysinfo (~> 0.8.1)
 
 BUNDLED WITH
-   1.16.1
+   1.17.2
