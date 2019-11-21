@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'paint', '~> 1.0'
+gem 'paint', '~> 2.1.0'
 gem 'rainbow', '~> 1.1'
 gem 'sysinfo', '~> 0.8.1'
 
